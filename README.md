@@ -8,7 +8,7 @@ In the `dependencies:` section of your `pubspec.yaml`, add the following line:
 
 ```yaml
 dependencies:
-    dependencies:
+    dependencies_flutter:
     git:
       url: git://github.com/Cilestal/dependencies_flutter.dart
 ```
