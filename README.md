@@ -1,10 +1,17 @@
-[![pub package](https://img.shields.io/pub/v/dependencies_flutter.svg)](https://pub.dartlang.org/packages/dependencies_flutter)
+# Flutter dependencies
 
-
-Simple package to ease the use of the [dependencies](https://pub.dartlang.org/packages/dependencies) with Flutter
+Simple package to ease the use of the [dependencies](https://github.com/Cilestal/dependencies.dart/) with Flutter
 leveraging the power of `InheritedWidget`. 
 
-[Read the Medium article](https://medium.com/@marcguilera/dependency-injection-in-flutter-625650195a98)
+# Installation
+In the `dependencies:` section of your `pubspec.yaml`, add the following line:
+
+```yaml
+dependencies:
+    dependencies:
+    git:
+      url: git://github.com/Cilestal/dependencies_flutter.dart
+```
 
 ## Usage
 
