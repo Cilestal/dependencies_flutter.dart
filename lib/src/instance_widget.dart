@@ -41,8 +41,7 @@ class WithInstanceWidget<T> extends StatelessWidget {
     this.params,
   }) : super(key: key);
 
-  factory WithInstanceWidget(
-      {Key key, InstanceBuilder builder, String name, Params params}) {
+  factory WithInstanceWidget({Key key, InstanceBuilder builder, String name, Params params}) {
     checkNotNull(builder, message: () => "builder can't be null");
     return WithInstanceWidget._internal(
       key: key,
@@ -58,5 +57,27 @@ class WithInstanceWidget<T> extends StatelessWidget {
       final instance = injector.get<T>(name: name, params: params);
       return builder(instance);
     });
+  }
+}
+
+class ChildInjectorWidget extends StatelessWidget with InjectorWidgetMixin {
+  final bool autoDispose;
+  final Module childModule;
+  final InjectorBuilder injectorBuilder;
+
+  ChildInjectorWidget({
+    Key key,
+    this.autoDispose = true,
+    @required this.childModule,
+    @required this.injectorBuilder,
+  }) : super(key: key);
+
+  @override
+  Widget buildWithInjector(BuildContext context, Injector injector) {
+    return InjectorWidget(
+      autoDispose: autoDispose,
+      child: WithInjectorWidget(builder: injectorBuilder),
+      injector: Injector.fromModule(module: childModule, parent: injector),
+    );
   }
 }

@@ -1,6 +1,6 @@
+import 'package:dependencies/dependencies.dart';
 import 'package:dependencies_flutter/dependencies_flutter.dart';
 import 'package:flutter/material.dart';
-import 'package:dependencies/dependencies.dart';
 
 class SomeRootWidget extends StatelessWidget {
   @override
@@ -34,7 +34,21 @@ class SomeWidget extends StatelessWidget {
     final injector = InjectorWidget.of(context);
     final apiKey = injector.get(name: "api_key");
     print(apiKey);
-    return Container();
+    return ChildInjectorWidget(
+      childModule: ChildModule(),
+      injectorBuilder: (childInjector) {
+        final apiKey2 = childInjector.get(name: "api_key_2");
+        print(apiKey2);
+        return Container();
+      },
+    );
+  }
+}
+
+class ChildModule implements Module {
+  @override
+  void configure(Binder binder) {
+    binder.bindSingleton("api_key_2_value", name: "api_key_2");
   }
 }
 
