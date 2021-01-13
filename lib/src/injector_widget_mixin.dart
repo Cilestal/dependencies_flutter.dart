@@ -2,7 +2,7 @@ part of 'package:dependencies_flutter/dependencies_flutter.dart';
 
 /// Utility mixin to easily use the injector in the [InjectorWidget].
 /// This can be applied to [State] or to [StatelessWidget] classes.
-abstract class InjectorWidgetMixin {
+mixin InjectorWidgetMixin {
   Widget build(BuildContext context) {
     return buildWithInjector(context, InjectorWidget.of(context));
   }
